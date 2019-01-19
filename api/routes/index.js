@@ -4,7 +4,7 @@ const express = require('express'),
 
 router.use('/api/user', require('./user'));
 
-router.get('/api', function(req, res ) {
+router.get('/api', (req, res ) => {
   res.json("Hello from Crud");
 });
 
