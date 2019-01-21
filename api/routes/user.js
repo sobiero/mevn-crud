@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var mongoose = require('mongoose')
-var UserController = require('../controllers/user.js')
+var UserController = require('../controllers/User.js')
 
 router.get('/test', (req, res, next) => {
    UserController.welcomeMsg(req, res, next)
