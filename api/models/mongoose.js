@@ -8,7 +8,7 @@ mongoose.connect( config.db.url,  { useNewUrlParser: true } ).then(
 	  },
 	  
 	  err => { 
-		  console.log('Error when connecting to the database'+ err)	  
+		  console.log('Error when connecting to the database. '+ err)	  
 	  }
 
 )
