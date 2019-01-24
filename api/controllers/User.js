@@ -10,15 +10,31 @@ const welcomeMsg = (req, res, next) => {
 }    
 
 const findAll = (req, res, next) => {
+
+    //console.log( req.query.page_length );
+    //var query = JSON.parse( req.query ); //{ filter: '', page_length: '2', page_number: '1' }
+    var skip  = parseInt( (req.query.page_number - 1 )) * parseInt( req.query.page_length) 
+    var limit = parseInt( req.query.page_length );
+
+    //console.log(vskip);
     
     var resp = {}
-    User.find({}, (err, data) => {
+    User.find({}, {}, {skip: skip, limit: limit }, (err, data) => {
         if(err) {
             resp = {'http-code': 501, 'http-status': 'error', 'msg': 'error getting users' + err.message, 'data':data }
         } else {
-            resp = {'http-code': 200, 'http-status': 'success', 'msg': 'ok', 'data':data }
+
+            //var datax = data
+
+
+            User.countDocuments({}, (err, count) => {
+               resp = {'http-code': 200, 'http-status': 'success', 'msg': 'ok', 'data':data, 'count': count }
+               res.json(resp);
+            });
+
+            // resp = {'http-code': 200, 'http-status': 'success', 'msg': 'ok', 'data':data }
         }
-        res.json(resp);
+        
    })
 
 }
@@ -42,10 +58,14 @@ const add = (req, res, next) => {
     var resp = {}
     var user = new User()
 
-    user.first_name   = req.body.form.first_name
-    user.last_name    = req.body.form.last_name
-    user.national_id  = req.body.form.national_id
-    user.dob          = req.body.form.dob
+    //console.log( req.body.first_name )
+
+    var formUser = JSON.parse(req.body.user);
+
+    user.first_name   = formUser.first_name
+    user.last_name    = formUser.last_name
+    user.national_id  = formUser.national_id
+    user.dob          = formUser.dob
 
     user.save({}, (err) => {
         if(err) {
@@ -62,6 +82,9 @@ const add = (req, res, next) => {
 const update = (req, res, next) => {
     var userId = req.params.id
     var resp = {}
+
+    // console.log(req);
+
     User.findById( userId, (err, data) => {
         if(err) {
             resp = {'http-code': 501, 'http-status': 'error', 'msg': 'error getting user data. ' + err.message, 'data':data }
@@ -70,6 +93,8 @@ const update = (req, res, next) => {
         } else {
             
             User.findById( userId, (err, user) => {
+
+            //  console.log(user);
             
             if(err) {
                 
@@ -77,11 +102,13 @@ const update = (req, res, next) => {
                 res.json(resp)
             
             } else {
+
+                var formUser = JSON.parse(req.body.user);
                 
-                user.first_name   = req.body.form.first_name
-                user.last_name    = req.body.form.last_name
-                user.national_id  = req.body.form.national_id
-                user.dob          = req.body.form.dob
+                user.first_name   = formUser.first_name
+                user.last_name    = formUser.last_name
+                user.national_id  = formUser.national_id
+                user.dob          = formUser.dob
 
                 user.save({}, (err) => {
                 if(err) {
