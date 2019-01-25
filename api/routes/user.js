@@ -25,15 +25,12 @@ router.get('/:id', (req, res, next) => {
 })
 router.post('/', upload.array(), (req, res, next) => {
    
-    //console.log( )
-    //res.json([]);
     UserController.add(req, res, next)
    
 })
 
 router.put('/:id', upload.array(), (req, res, next) => {
    
-   //console.log(JSON.parse(req.body.user))
    UserController.update(req, res, next)
    
 })
@@ -42,6 +39,5 @@ router.delete('/:id', (req, res, next) => {
    UserController.remove(req, res, next)
    
 })
-
 
 module.exports = router

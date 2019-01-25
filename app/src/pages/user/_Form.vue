@@ -5,6 +5,9 @@
 
         <b-nav pills style="margin:auto;" class="main-nav ">
          <b-nav-item :to="{ name: 'list'  , query: { } }" > <i class="fas fa-users"></i> View Users </b-nav-item>
+
+         <b-nav-item :to="{ name: 'login'  , query: { } }" > <i class="fas fa-users"></i> Login </b-nav-item>
+
         </b-nav>
 
     </div>
@@ -46,6 +49,21 @@
                         label="Date of Birth:"
                         label-for="input_sm">
             <b-form-input v-model='user.dob' size="sm"></b-form-input>
+          </b-form-group>
+
+          <b-form-group horizontal
+                        :label-cols="3"
+                        label-size="sm"
+                        label="Username:"
+                        label-for="input_sm">
+            <b-form-input v-model='user.username' size="sm"></b-form-input>
+          </b-form-group>
+          <b-form-group horizontal
+                        :label-cols="3"
+                        label-size="sm"
+                        label="Password:"
+                        label-for="input_sm">
+            <b-form-input v-model='user.password' size="sm"></b-form-input>
           </b-form-group>
 
           <b-button type="submit" variant="primary">
@@ -97,7 +115,7 @@ export default {
            axios.put( '/api/user/' + this.user._id , formData,
            {
               headers: {
-                'Content-Type': 'multipart/form-data'
+                //'Content-Type': 'multipart/form-data'
                 //'Content-Type': 'application/json'
               }
            }
@@ -114,7 +132,7 @@ export default {
             axios.post( '/api/user/' , formData,
             {
               headers: {
-                'Content-Type': 'multipart/form-data'
+                //'Content-Type': 'multipart/form-data'
                 //'Content-Type': 'application/json'
               }
             }

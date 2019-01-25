@@ -72,12 +72,12 @@ export default {
     return {
       user: {
         columns: [
-          { label: 'First Name', field: 'user.first_name', sortable: true },
-          { label: 'Last Name', field: 'user.last_name', sortable: true },
-          { label: 'National ID', field: 'user.national_id', sortable: true },
-          { label: 'Date of Birth', field: 'user.dob', sortable: true },
-          { label: 'Activated', field: 'user.activated', sortable: true },
-          { label: 'Actions', field: 'user.actions', sortable: false },
+          { label: 'First Name', field: 'first_name', sortable: true },
+          { label: 'Last Name', field: 'last_name', sortable: true },
+          { label: 'National ID', field: 'national_id', sortable: true },
+          { label: 'Date of Birth', field: 'dob', sortable: true },
+          { label: 'Activated', field: 'activated', sortable: true },
+          { label: 'Actions', field: 'actions', sortable: false },
         ],
         rows: [],
         page: 1,

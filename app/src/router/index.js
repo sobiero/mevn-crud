@@ -4,6 +4,8 @@ import Home from '@/pages/Home';
 import UserBase from '@/pages/user/Base';
 import UserAdd from '@/pages/user/Add';
 import UserEdit from '@/pages/user/Edit';
+import Login from '@/components/Login';
+
 
 Vue.use(Router);
 
@@ -15,6 +17,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
     },
     {
       path: '/user',

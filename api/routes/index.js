@@ -4,6 +4,8 @@ const express = require('express'),
 
 router.use('/api/user', require('./user'));
 
+router.use('/api/auth', require('./auth'));
+
 router.get('/api', (req, res ) => {
   res.json("Hello from Crud");
 });
